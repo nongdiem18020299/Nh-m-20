@@ -105,12 +105,12 @@ class Scene3 extends Phaser.Scene {
     }
 
     onStop(pointer, gameObject) {
-        this.sound.play('click');
         if (gameObject.x > this.trainRoad3.widthRoad() && gameObject.x < (this.trainRoad3.widthRoad() + 107) &&
             gameObject.y > 210 && gameObject.y < 320
         ) {
             this.groupTrain3.removeTrain(gameObject);
             this.trainRoad3.addTrain(gameObject);
+            this.sound.play('click');
             if (this.trainRoad3.minTrain() < this.groupTrain3.maxTrain()) {
                 this.time.addEvent({
                     delay: 500,
