@@ -23,21 +23,25 @@ class Scene1 extends Phaser.Scene {
         this.load.image("ball", "./img/ball.png");
         this.load.text("level", "./JS/level.json");
         this.load.image("progressbar", "./img/progressbar.png");
+        this.load.spritesheet("sound", "./img/sound.png", {
+            frameWidth: 50,
+            frameHeight: 50,
+        });
         this.load.audio("click", "./audio/click.mp3");
         this.load.audio("wrong", "./audio/wrong.mp3");
+        this.load.audio("speak", "./audio/speak.mp3");
     }
 
     create() {
-        this.add.image(400, 50, 'progressbar');
+        this.add.image(400, 20, 'progressbar');
         this.trainRoad1 = new trainRoad(this, 0, 350, "road");
         this.groupTrain = new listTrain(this, 0, 170, "list");
-
+        this.sound = new Sound(this, 150, 70);
         this.level = 1;
         this.data = JSON.parse(this.cache.text.get("level")).level;
         this.setData(this.data[this.level - 1]);
         this.input.on("gameobjectup", this.onStop, this);
         this.input.on("drag", this.onDoDrag, this);
-
         this.zones = this.physics.add.group({
             key: 'zone',
             repeat: 4,
@@ -52,7 +56,7 @@ class Scene1 extends Phaser.Scene {
             repeat: 3,
             setXY: {
                 x: 140,
-                y: 50,
+                y: 20,
                 stepX: 30
             }
         });
