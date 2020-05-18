@@ -1,0 +1,86 @@
+/* -------------------------------------------------- */
+
+
+/* SETUP */
+
+
+/* -------------------------------------------------- */
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'PT Sans', sans-serif;
+    width: 100%;
+}
+
+
+/* -------------------------------------------------- */
+
+
+/* TITLE */
+
+
+/* -------------------------------------------------- */
+
+.title {
+    position: absolute;
+    margin-top: 10rem;
+    margin-left: 20rem;
+    font-weight: 850;
+    font-size: 1.5rem;
+}
+
+
+/* -------------------------------------------------- */
+
+
+/* GAME*/
+
+
+/* -------------------------------------------------- */
+
+.game {
+    position: absolute;
+    display: grid;
+    margin-top: 15rem;
+    margin-left: 15rem;
+    grid-template-rows: 15rem;
+    grid-template-columns: 12rem 12rem 12rem;
+    grid-column-gap: 5rem;
+}
+
+.game a {
+    text-decoration: none;
+    color: black;
+}
+
+.game1 p {
+    text-align: center;
+}
+
+.game2 p {
+    text-align: center;
+}
+
+.game3 p {
+    text-align: center;
+}
+
+.game1 a:hover,
+.game1 a p:active {
+    color: rgb(250, 87, 87);
+}
+
+.game2 a:hover,
+.game2 a p:active {
+    color: rgb(250, 87, 87);
+}
+
+.game3 a:hover,
+.game3 a p:active {
+    color: rgb(250, 87, 87);
+}
