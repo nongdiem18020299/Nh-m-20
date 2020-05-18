@@ -1,0 +1,94 @@
+/* -------------------------------------------------- */
+
+
+/* SETUP */
+
+
+/* -------------------------------------------------- */
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'PT Sans', sans-serif;
+    width: 100%;
+}
+
+
+/* -------------------------------------------------- */
+
+
+/* TITLE */
+
+
+/* -------------------------------------------------- */
+
+.title {
+    margin-top: 2rem;
+    margin-left: 25rem;
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+
+/* -------------------------------------------------- */
+
+
+/*IMG*/
+
+
+/* -------------------------------------------------- */
+
+.dragon {
+    width: 25%;
+    margin-left: 25rem;
+}
+
+.icon1 {
+    position: absolute;
+    width: 5%;
+    margin-top: -3rem;
+    margin-left: 3rem;
+}
+
+.icon2 {
+    position: absolute;
+    width: 20%;
+    margin-top: 3rem;
+    margin-left: -24rem;
+}
+
+.icon3 {
+    position: absolute;
+    width: 20%;
+    margin-top: 3rem;
+    margin-left: -6rem;
+}
+
+
+/* -------------------------------------------------- */
+
+
+/*BUTTON*/
+
+
+/* -------------------------------------------------- */
+
+.button {
+    color: white;
+    position: absolute;
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-left: 32rem;
+    padding: 0.5rem;
+    border-radius: 8%;
+    background-color: rgb(86, 181, 219);
+}
+
+.btt a :hover,
+.btt a :active {
+    background-color: rgb(128, 189, 240);
+}
