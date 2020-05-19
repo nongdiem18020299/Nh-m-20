@@ -24,6 +24,10 @@ class Scene3 extends Phaser.Scene {
         this.load.image("ball", "./img/ball.png");
         this.load.text("level", "./JS/level3.json");
         this.load.image("progressbar", "./img/progressbar.png");
+        this.load.spritesheet("sound", "./img/sound.png", {
+            frameWidth: 50,
+            frameHeight: 50,
+        });
         this.load.audio("click", "./audio/click.mp3");
         this.load.audio("wrong", "./audio/wrong.mp3");
     }

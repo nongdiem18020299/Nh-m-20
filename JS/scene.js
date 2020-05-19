@@ -36,7 +36,7 @@ class Scene1 extends Phaser.Scene {
         this.add.image(400, 20, 'progressbar');
         this.trainRoad1 = new trainRoad(this, 0, 350, "road");
         this.groupTrain = new listTrain(this, 0, 170, "list");
-        this.sound = new Sound(this, 150, 70);
+        this.music = new Sound(this, 150, 70, 'Order the train cars from the smaller');
         this.level = 1;
         this.data = JSON.parse(this.cache.text.get("level")).level;
         this.setData(this.data[this.level - 1]);
@@ -107,6 +107,7 @@ class Scene1 extends Phaser.Scene {
     }
 
     onStop(pointer, gameObject) {
+        console.log("on Stop");
         if (gameObject.x > this.trainRoad1.widthRoad() && gameObject.x < (this.trainRoad1.widthRoad() + 107) &&
             gameObject.y > 210 && gameObject.y < 320
         ) {
