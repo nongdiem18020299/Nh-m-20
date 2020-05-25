@@ -19,11 +19,11 @@
     /* -------------------------------------------------- */
     
     body {
-        width: 50rem;
-        height: 30rem;
+        width: 55rem;
+        height: 35rem;
         background-color: white;
-        margin-left: 13.5rem;
-        margin-top: 2rem;
+        margin-left: 10.5rem;
+        margin-top: 1rem;
         border-radius: 2%;
         box-shadow: 10px 10px 2px 0 rgba(0, 0, 0, 0.2);
         padding-top: 0.2rem;

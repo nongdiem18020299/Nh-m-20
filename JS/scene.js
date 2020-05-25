@@ -3,7 +3,6 @@ class Scene1 extends Phaser.Scene {
         super("Game");
     }
     preload() {
-
         this.load.image("road", "./img/TrainRoad.png");
         this.load.image("list", "./img/TrainList.png");
         this.load.image("train1", "./img/Train1.png");
@@ -18,54 +17,57 @@ class Scene1 extends Phaser.Scene {
         this.load.image("car7", "./img/Train7.png");
         this.load.image("car20", "./img/Train20.png");
         this.load.image("zone", "./img/zone.png");
+        this.load.image("zone1", "./img/zone1.png");
         this.load.image("cir1", "./img/circle_head.png");
         this.load.image("cir2", "./img/circle_car.png");
         this.load.image("ball", "./img/ball.png");
         this.load.text("level", "./JS/level.json");
         this.load.image("progressbar", "./img/progressbar.png");
-        this.load.spritesheet("sound", "./img/sound.png", {
-            frameWidth: 50,
-            frameHeight: 50,
-        });
         this.load.audio("click", "./audio/click.mp3");
         this.load.audio("wrong", "./audio/wrong.mp3");
-        this.load.audio("speak", "./audio/speak.mp3");
     }
 
     create() {
-        this.add.image(400, 20, 'progressbar');
+        this.add.image(400, 50, "progressbar");
         this.trainRoad1 = new trainRoad(this, 0, 350, "road");
         this.groupTrain = new listTrain(this, 0, 170, "list");
-        this.music = new Sound(this, 150, 70, 'Order the train cars from the smaller');
+
         this.level = 1;
         this.data = JSON.parse(this.cache.text.get("level")).level;
+        this.text = new Text(this, 100, 100, "Order the train cars from the smaller to the greater");
         this.setData(this.data[this.level - 1]);
         this.input.on("gameobjectup", this.onStop, this);
         this.input.on("drag", this.onDoDrag, this);
+
         this.zones = this.physics.add.group({
-            key: 'zone',
+            key: "zone",
             repeat: 4,
+            alpha: 0,
             setXY: {
                 x: 210,
                 y: 375,
-                stepX: 107
-            }
+                stepX: 107,
+            },
         });
+
+        this.zoneList = this.zones.getChildren();
+        this.zoneSetAlpha();
+
+        this.zoneDrag = this.add.image(205, 372, "zone1");
+        this.zoneDrag.setVisible(false);
+
         this.balls = this.physics.add.group({
-            key: 'ball',
+            key: "ball",
             repeat: 3,
             setXY: {
                 x: 140,
-                y: 20,
-                stepX: 30
-            }
+                y: 50,
+                stepX: 30,
+            },
         });
-
     }
 
-
     update() {
-
         var list = this.balls.getChildren();
         if (this.trainRoad1.check()) {
             if (this.level == 4) {
@@ -82,7 +84,6 @@ class Scene1 extends Phaser.Scene {
                 this.reset();
                 this.setData(this.data[this.level - 1]);
             }
-
         }
     }
 
@@ -104,36 +105,58 @@ class Scene1 extends Phaser.Scene {
             gameObject.y = dragY;
         }
 
+        if (
+            gameObject.x > this.trainRoad1.widthRoad() &&
+            gameObject.x < this.trainRoad1.widthRoad() + 107 &&
+            gameObject.y > 210 &&
+            gameObject.y < 320
+        ) {
+            this.zoneDrag.setVisible(true);
+        } else {
+            this.zoneDrag.setVisible(false);
+        }
     }
 
     onStop(pointer, gameObject) {
-        console.log("on Stop");
-        if (gameObject.x > this.trainRoad1.widthRoad() && gameObject.x < (this.trainRoad1.widthRoad() + 107) &&
-            gameObject.y > 210 && gameObject.y < 320
+        this.sound.play("click");
+        if (
+            gameObject.x > this.trainRoad1.widthRoad() &&
+            gameObject.x < this.trainRoad1.widthRoad() + 107 &&
+            gameObject.y > 210 &&
+            gameObject.y < 320
         ) {
+            this.zoneDrag.setVisible(false);
             this.groupTrain.removeTrain(gameObject);
             this.trainRoad1.addTrain(gameObject);
-            this.sound.play('click');
             if (this.trainRoad1.maxTrain() > this.groupTrain.minTrain()) {
                 this.time.addEvent({
                     delay: 500,
                     callback: () => {
                         this.trainRoad1.removeTrain(gameObject);
-                        this.groupTrain.addTrain(gameObject);;
+                        this.groupTrain.addTrain(gameObject);
                     },
                     loop: false,
                 });
                 //this.trainRoad1.removeTrain(gameObject);
                 //this.groupTrain.addTrain(gameObject);
-                this.sound.play('wrong');
+                this.sound.play("wrong");
+            } else {
+                this.zoneDrag.x += 107;
+                for (var i = 0; i < this.zoneList.length; i++) {
+                    if (this.zoneList[i].alpha === 0.5) {
+                        this.zoneList[i].alpha = 1;
+                        break;
+                    }
+                }
             }
-
         }
     }
 
     reset() {
         this.groupTrain.reset();
         this.trainRoad1.reset();
+        this.zoneSetAlpha();
+        this.zoneDrag.x = 205;
     }
 
     setData(data) {
@@ -173,5 +196,12 @@ class Scene1 extends Phaser.Scene {
             case 20:
                 return new Train(this, 0, 0, 20, "car20");
         }
+    }
+
+    zoneSetAlpha() {
+        for (var i = 0; i < this.zoneList.length; i++) {
+            this.zoneList[i].alpha = 0.5;
+        }
+        this.zoneList[0].alpha = 1;
     }
 }
