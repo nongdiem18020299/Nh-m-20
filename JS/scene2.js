@@ -6,7 +6,7 @@ class Scene2 extends Phaser.Scene {  // 13 8 4
         this.load.image("ruler", "./img/ruler.png");
         this.load.image("progressbar", "./img/progressbar.png");
         this.load.image("ball", "./img/ball.png"); 
-        this.load.image("ballObj", "./img/ballObj.png");
+        
         this.load.image("ballObj2", "./img/ballObj2.png");
         this.load.image("list", "./img/listBall.png");
         this.load.image("ball1", "./img/ballObj.png");
@@ -28,7 +28,7 @@ class Scene2 extends Phaser.Scene {  // 13 8 4
 
         this.listBall0 = new listBall(this, 100, 180, 'list');
 
-        this.level = 1;
+        this.level = 3;
         this.data = JSON.parse(this.cache.text.get("level2")).level2;
         this.setData(this.data[this.level - 1]);
 
@@ -83,6 +83,10 @@ class Scene2 extends Phaser.Scene {  // 13 8 4
 
 
         gameObject.y = 170;
+        //if (gameObject.getNum() * 32.5 + 10 < gameObject.x && gameObject.getNum() * 32.5 + 45 > gameObject.x) {
+          //  gameObject.setTint(0xff0000);
+        //}
+       // else gameObject.setTint(0xffffff);
     }
 
     onStart(pointer, gameObject) {
@@ -93,7 +97,8 @@ class Scene2 extends Phaser.Scene {  // 13 8 4
         gameObject.destroyBallTouch();
         var num = Math.floor(gameObject.x / dis);
         console.log(gameObject.getNum());
-        if (gameObject.getNum() * 31 + 28 < gameObject.x && gameObject.getNum() * 31 + 60 > gameObject.x) {
+        if (gameObject.getNum() * 32.5 + 10 < gameObject.x && gameObject.getNum() * 32.5 + 45 > gameObject.x) {
+            
             if (gameObject.getNum() < 10) {
                 this.add.text(45 + gameObject.getNum() * 33, 335, gameObject.getNum(), {
                     font: "25px Arial",
@@ -126,7 +131,8 @@ class Scene2 extends Phaser.Scene {  // 13 8 4
                 delay: 500,
                 callback: () => {
                     gameObject.setVelocityY(-250);
-                    
+                    this.reset();
+                    this.setData(this.data[this.level - 1]);
                 },
                 loop: false,
             });
@@ -157,6 +163,8 @@ class Scene2 extends Phaser.Scene {  // 13 8 4
                 return new Ball(this, -100, -100, 12, "ball12");
             case 13:
                 return new Ball(this, -100, -100, 13, "ball13");
+            case 14:
+                return new Ball(this, -100, -100, 14, "ball14");
             case 16:
                 return new Ball(this, -100, -100, 16, "ball16");
             case 17:
