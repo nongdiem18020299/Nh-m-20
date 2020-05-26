@@ -1,10 +1,10 @@
 class Sound {
-    constructor(scene, x, y, text) {
-        this.clickButton = scene.add.text(x + 40, y - 15, text, {
+    constructor(scene, x, y, text1, text2) {
+        this.clickButton = scene.add.text(x + 40, y - 30, text1, {
             font: "30px Arial",
             fill: "#000"
         });
-        this.clickButton = scene.add.text(x + 170, y + 15, 'to the greater', {
+        this.clickButton = scene.add.text(x + 170, y, text2, {
             font: "30px Arial",
             fill: "#000"
         });
