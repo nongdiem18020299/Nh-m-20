@@ -33,7 +33,7 @@ class Scene3 extends Phaser.Scene {
         this.add.image(400, 50, 'progressbar');
         this.trainRoad3 = new trainRoad3(this, 0, 350, "road");
         this.groupTrain3 = new listTrain3(this, 0, 170, "list");
-
+        this.text = new Text(this, 100, 100, "Order the train cars from the smaller to the greater");
         this.level = 1;
         this.data = JSON.parse(this.cache.text.get("level")).level;
         this.text = new Text(this, 100, 100, "Put the train cars from the greatest to the smallest");

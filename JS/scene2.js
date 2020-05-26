@@ -1,12 +1,11 @@
-class Scene2 extends Phaser.Scene {  // 13 8 4
+class Scene2 extends Phaser.Scene { // 13 8 4
     constructor() {
         super("Game");
     }
     preload() {
         this.load.image("ruler", "./img/ruler.png");
         this.load.image("progressbar", "./img/progressbar.png");
-        this.load.image("ball", "./img/ball.png"); 
-        
+        this.load.image("ball", "./img/ball.png");
         this.load.image("ballObj2", "./img/ballObj2.png");
         this.load.image("list", "./img/listBall.png");
         this.load.image("ball1", "./img/ballObj.png");
@@ -48,7 +47,7 @@ class Scene2 extends Phaser.Scene {  // 13 8 4
     }
     update() {
         var list = this.balls.getChildren();
-        if (this.listBall0.check()==1) {
+        if (this.listBall0.check() == 1) {
             if (this.level == 4) {
                 this.time.addEvent({
                     delay: 500,
@@ -84,9 +83,9 @@ class Scene2 extends Phaser.Scene {  // 13 8 4
 
         gameObject.y = 170;
         //if (gameObject.getNum() * 32.5 + 10 < gameObject.x && gameObject.getNum() * 32.5 + 45 > gameObject.x) {
-          //  gameObject.setTint(0xff0000);
+        //  gameObject.setTint(0xff0000);
         //}
-       // else gameObject.setTint(0xffffff);
+        // else gameObject.setTint(0xffffff);
     }
 
     onStart(pointer, gameObject) {
@@ -98,7 +97,7 @@ class Scene2 extends Phaser.Scene {  // 13 8 4
         var num = Math.floor(gameObject.x / dis);
         console.log(gameObject.getNum());
         if (gameObject.getNum() * 32.5 + 10 < gameObject.x && gameObject.getNum() * 32.5 + 45 > gameObject.x) {
-            
+
             if (gameObject.getNum() < 10) {
                 this.add.text(45 + gameObject.getNum() * 33, 335, gameObject.getNum(), {
                     font: "25px Arial",
@@ -116,15 +115,14 @@ class Scene2 extends Phaser.Scene {  // 13 8 4
                 callback: () => {
 
                     this.listBall0.removeBall(gameObject);
-                    
+
                 },
                 loop: false,
             });
-            
 
-        }
-        else {
-            
+
+        } else {
+
             gameObject.setTint(0xff0000);
             //gameObject.setVelocityY(-250);
             this.time.addEvent({
@@ -138,7 +136,7 @@ class Scene2 extends Phaser.Scene {  // 13 8 4
             });
         }
     }
-    
+
     reset() {
         this.listBall0.reset();
     }
@@ -153,8 +151,8 @@ class Scene2 extends Phaser.Scene {  // 13 8 4
     }
     setBall(num) {
         switch (num) {
-           
-            
+
+
             case 4:
                 return new Ball(this, -100, -100, 4, "ball4");
             case 11:
