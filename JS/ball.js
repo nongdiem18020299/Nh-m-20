@@ -28,7 +28,7 @@ class Ball extends Phaser.Physics.Arcade.Sprite {
         }
 
 
-        this.ballTouch = scene.add.image(this.x, this.y, 'ballObj2').setOrigin(0, 0);
+        this.ballTouch = scene.add.image(this.x+12, this.y, 'ballObj2').setOrigin(0, 0);
     }
     destroyBallTouch() {
 
