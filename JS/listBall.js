@@ -17,13 +17,15 @@ class listBall extends Phaser.Physics.Arcade.Sprite {
     }
     sort() {
         var list = this.ball.getChildren();
-        list[0].x = 100;
-        list[0].y = 180;
+        if (list.length != 0) {
+            list[0].x = 100;
+            list[0].y = 180;
+        }
 
     }
     check() {
         var list = this.ball.getChildren();
-        if (list.length > 1) return 0;
+        if (list.length == 0) return true;
     }
     addBall(obj) {
         this.ball.add(obj);
@@ -32,6 +34,7 @@ class listBall extends Phaser.Physics.Arcade.Sprite {
     removeBall(obj) {
         this.ball.remove(obj);
         this.sort();
+
     }
     reset() {
         this.ball.clear(true, true);

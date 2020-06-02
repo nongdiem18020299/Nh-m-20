@@ -29,14 +29,14 @@ class Scene1 extends Phaser.Scene {
         });
         this.load.audio("click", "./audio/click.mp3");
         this.load.audio("wrong", "./audio/wrong.mp3");
-        this.load.audio("speak", "./audio/speak.mp3");
+        this.load.audio("speak", "./audio/speak1.mp3");
     }
 
     create() {
         this.add.image(400, 20, "progressbar");
         this.trainRoad1 = new trainRoad(this, 0, 350, "road");
         this.groupTrain = new listTrain(this, 0, 170, "list");
-        // this.music1 = new Sound(this, 145, 70, 'Order the train cars from the smallert', 'to the greater');
+        this.music1 = new Sound(this, 145, 70, 'Order the train cars from the smaller', 'to the greater');
         this.level = 1;
         this.data = JSON.parse(this.cache.text.get("level")).level;
         this.setData(this.data[this.level - 1]);

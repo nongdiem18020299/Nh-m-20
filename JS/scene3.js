@@ -31,7 +31,7 @@ class Scene3 extends Phaser.Scene {
         });
         this.load.audio("click", "./audio/click.mp3");
         this.load.audio("wrong", "./audio/wrong.mp3");
-        this.load.audio("speak", "./audio/speak.mp3");
+        this.load.audio("speak", "./audio/speak3.mp3");
     }
 
     create() {
